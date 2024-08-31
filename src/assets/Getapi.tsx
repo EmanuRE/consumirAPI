@@ -1,37 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../assets/Estudiantes.css';
-import logo from '../assets/logo.png'; // Asegúrate de que la ruta sea correcta
+import '../assets/vistaCarnet.css';
+import logo from '../assets/logo.png'; // Ruta para el Logo UMG
 
 const Estudiantes = () => {
-  // Estado para almacenar la lista de estudiantes
+  // Estado para la lista de estudiantes
   const [data, setData] = useState([]);
   // Estado para el término de búsqueda
   const [searchTerm, setSearchTerm] = useState('');
   // Estado para el estudiante seleccionado
   const [selectedEstudiante, setSelectedEstudiante] = useState(null);
+  // Estado para manejar mensajes de error
+  const [errorMessage, setErrorMessage] = useState('');
+  // Estado para manejar mensajes de información
+  const [infoMessage, setInfoMessage] = useState('');
 
   useEffect(() => {
-    // Realizar la solicitud a la API
+    // Solicitar datos a la API
     axios.get('/api/estudiantes')
       .then(response => {
-        // Ajusta esto según la estructura real de los datos
-        setData(response.data); // Asume que response.data es la lista de estudiantes
+        // Ajuste de la estructura de datos
+        setData(response.data);
       })
       .catch(error => {
         console.error("Hubo un error al obtener los datos:", error);
+        setErrorMessage('Hubo un error al obtener los datos.'); // Mostrar mensaje de error
       });
   }, []);
 
   const handleSearch = () => {
-    // Busca el estudiante cuyo carnet coincida con el término de búsqueda
+    // Limpia los mensajes previos
+    setErrorMessage('');
+    setInfoMessage('');
+
+    if (searchTerm.trim() === '') {
+      setErrorMessage('Por favor ingrese un carnet válido.');
+      return;
+    }
+
+    // Buscar el estudiante por carnet
     const estudiante = data.find(est => est.Carnet.includes(searchTerm.trim()));
-    setSelectedEstudiante(estudiante);
+
+    if (estudiante) {
+      setSelectedEstudiante(estudiante);
+    } else {
+      setSelectedEstudiante(null);
+      setInfoMessage('No se encontraron datos para el carnet ingresado.'); // Mostrar mensaje si no se encuentra el carnet
+    }
   };
 
   const handleClear = () => {
     setSearchTerm('');
     setSelectedEstudiante(null);
+    setErrorMessage('');
+    setInfoMessage('');
   };
 
   return (
@@ -40,6 +62,7 @@ const Estudiantes = () => {
         <h1>Consulta de alumnos</h1>
         <img src={logo} alt="Logo de la universidad" className="logo" />
       </div>
+
       <div className="form-group">
         <label>Carnet:</label>
         <input 
@@ -48,6 +71,11 @@ const Estudiantes = () => {
           onChange={(e) => setSearchTerm(e.target.value)} 
         />
       </div>
+
+      {/* Mostrar mensajes de error e información */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {infoMessage && <div className="info-message">{infoMessage}</div>}
+
       <div className="form-group">
         <label>Nombres:</label>
         <input 
@@ -72,6 +100,7 @@ const Estudiantes = () => {
           disabled 
         />
       </div>
+
       <div className="button-group">
         <button onClick={handleSearch}>Buscar</button>
         <button onClick={handleClear}>Limpiar</button>
@@ -81,4 +110,4 @@ const Estudiantes = () => {
   );
 };
 
-export default Estudiantes;
+export default Estudiantes; //Estudiantes

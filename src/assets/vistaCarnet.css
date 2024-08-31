@@ -1,6 +1,6 @@
-/* Estilos generales para el contenedor del formulario */
+/* Estilo del formulario */
 body {
-  background-color: #007bff; /* Fondo de la página azul */
+  background-color: #007bff; /* Fondo de la página */
   margin: 0;
   font-family: Arial, sans-serif;
 }
@@ -9,37 +9,37 @@ body {
   background-color: #fff;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Efecto bisel */
-  max-width: 800px; /* Aumenta el ancho del formulario */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Redondear los botones */
+  max-width: 800px; /* Ancho del formulario */
   margin: 20px auto;
 }
 
-/* Contenedor para el encabezado y el logo */
+/* Encabezado y logo */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-  width: 100%; /* Asegura que el encabezado ocupe todo el ancho del formulario */
+  width: 100%; 
 }
 
-/* Estilo para el logo en la esquina superior derecha del encabezado */
+/* Logo a la derecha del encabezadov */
 .logo {
-  width: 90px; /* Ajusta el tamaño del logo */
+  width: 90px; 
   height: auto;
 }
 
-/* Estilo para el título */
+/* Diseño del titulo */
 h1 {
   margin: 0;
-  font-size: 20px; /* Ajusta el tamaño del texto */
+  font-size: 20px; 
   color: #333;
-  white-space: nowrap; /* Evita el salto de línea en el título */
-  overflow: hidden; /* Oculta el desbordamiento */
-  text-overflow: ellipsis; /* Muestra puntos suspensivos si el texto es demasiado largo */
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 
-/* Estilo para los campos del formulario */
+/* Diseño para los campos del formulario */
 .form-group {
   display: flex;
   align-items: center;
@@ -47,23 +47,23 @@ h1 {
 }
 
 .form-group label {
-  width: 120px; /* Ajusta el ancho del label */
+  width: 120px; /* Ajuste de los label */
   font-weight: bold;
   color: #333;
   margin-right: 10px;
 }
 
 .form-group input {
-  width: 400px; /* Reduce el ancho de los campos de entrada */
-  padding: 10px; /* Ajusta el padding para hacer el campo más pequeño */
+  width: 400px; /* Ancho de campos de entrada */
+  padding: 10px; 
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #f5f5f5;
   color: #333;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Efecto bisel para los campos de entrada */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Redondear los bordes de botones */
 }
 
-/* Estilo para los botones */
+/* Estilo de botones */
 .button-group {
   display: flex;
   justify-content: center;
@@ -82,11 +82,12 @@ h1 {
   font-size: 16px;
 }
 
+/* Boton de BUSCAR */
 .button-group button:hover {
   background-color: #0056b3;
 }
 
-/* Botón específico para limpiar */
+/* Boton de LIMPIAR */
 .button-group button:nth-child(2) {
   background-color: #dc3545;
 }
@@ -95,11 +96,21 @@ h1 {
   background-color: #c82333;
 }
 
-/* Botón específico para cancelar */
+/* Boton de CANCELAR */
 .button-group button:last-child {
   background-color: #007bff;
 }
 
 .button-group button:last-child:hover {
   background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.info-message {
+  color: blue;
+  margin-top: 10px;
 }
